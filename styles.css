@@ -62,7 +62,7 @@ p,h1,h2, h3, h4, h5, h6 {
 .slide:nth-child(4) { background: #ffca3a; }
 
 .containerList{
-    margin: 20px 20% 10px 20%;
+    margin: 20px 20% 10px;
     width: 100%;
     height: auto;
     font-weight: 100;
@@ -74,4 +74,5 @@ p,h1,h2, h3, h4, h5, h6 {
 }
 #internshipList{
     margin:  1cm 5% 0px 5%;
+
 }
