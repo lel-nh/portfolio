@@ -62,8 +62,9 @@ p,h1,h2, h3, h4, h5, h6 {
 .slide:nth-child(4) { background: #ffca3a; }
 
 .containerList{
-    margin: 20px 20%;
-    
+    margin: 20px 20% 20px 20%;
+    height: auto;
+    font-weight: 100;
 }
 #projectsList{
     margin:  1cm 5% 0px 5%;
@@ -73,5 +74,6 @@ p,h1,h2, h3, h4, h5, h6 {
     margin:  1cm 5% 0px 5%;
 
 }
+
 
 
