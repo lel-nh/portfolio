@@ -48,7 +48,7 @@ useEffect(() => {
           
       </div>
       <iframe
-        src="http://https://lel-nh.github.io/portfolio/"
+        src="https://lel-nh.github.io/portfolio/"
         width={600}
         height={400}
         className="rounded-lg"
