@@ -403,7 +403,7 @@ function onKeyDown (event) {
 
 async function addCardboardBlock(){
   const loader = new OBJLoader();
-  const object = await loader.loadAsync( '/docs/ressources/obj/Box.obj' );
+  const object = await loader.loadAsync( '/portfolio/docs/ressources/obj/Box.obj' );
   object.scale.set(100,100,100);
   object.rotation.x = -Math.PI / 2;
   cardboardList.push(object);
