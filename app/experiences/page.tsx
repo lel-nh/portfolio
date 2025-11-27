@@ -7,13 +7,13 @@ export default function Home() {
 const dict_projects = [
   {
     titre: "IFT",
-    description: "Description of the first experience",
+    description: "I am a student at the Institute for Future Technologies (LIFT), where I work on a wide range of innovative projects both independently and within multidisciplinary teams. My experience spans biomaterials engineering, off-earth construction concepts, Martian regolith simulant research, and human-centered experimental design. This environment allows me to explore emerging technologies while contributing to research, prototyping, and creative development across diverse fields.",
     image: "/ift.png",
     lien: "/experiences/ift"
   },
   {
     titre: "Bryanthings", 
-    description: "Description of the second experience",
+    description: "During my internship at Bryanthings in 2025, I worked as a Project Manager, handling logistics, client relations, business development, and supporting luxury and cultural sector clients. This experience naturally evolved into ongoing freelance opportunities, allowing me to continue managing projects, developing strong client relationships, and integrating AI-assisted workflows into my work.",
     image: "/bryanthings.png",
     lien: "/experiences/bryanthings"
   }
