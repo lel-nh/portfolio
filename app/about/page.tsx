@@ -21,7 +21,7 @@ export default function Home() {
         <h2 className="text-l">Engineer-Manager Student | Msc Candidate | Creative Technologist</h2>
         <br />
         <p className="max-w-xl text-center">
-            I'm passionate about how innovation can make evolve technology help people in harmony with nature.
+            I am passionate about how innovation can make evolve technology help people in harmony with nature.
         </p>
         <br />
           <div className="w-full aspect-[9/16] rounded-md overflow-hidden">
