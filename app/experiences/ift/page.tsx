@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -7,9 +8,9 @@ export default function Home() {
     <div className="font-sanchez grid items-center justify-items-center min-h-screen gap-16">
       <header className="w-[60%] bg-[#000000]/60 items-center justify-items-center justify align-center left-1/2 transform -translate-x-1/2 backdrop-blur-md shadow-md text-center fixed top-4 p-6 rounded-2xl font-bold sm:text-3xl text-white">
         <nav className="relative flex justify-center font-bold gap-6">
-            <a href="/about" className="text-lg hover:underline">About</a>
-            <a href="/" className="text-lg items-center hover:underline">Projects</a>
-            <a href="/experiences" className="underline text-lg hover:underline">Experiences</a>
+            <Link href="/about" className="text-lg hover:underline">About</Link>
+            <Link href="/" className="text-lg items-center hover:underline">Projects</Link>
+            <Link href="/experiences" className="underline text-lg hover:underline">Experiences</Link>
           </nav>
       </header>
     
@@ -35,7 +36,7 @@ export default function Home() {
      
 
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
+        <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="/about"
           target="_blank"
@@ -49,8 +50,8 @@ export default function Home() {
             height={16}
           />
           Lélian Nahon
-        </a>
-        <a
+        </Link>
+        <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="mailto:lelian.nahon@edu.devinci.fr"
           target="_blank"
@@ -64,7 +65,7 @@ export default function Home() {
             height={16}
           />
           E-mail →
-        </a>
+        </Link>
       </footer>
     </div>
   );
