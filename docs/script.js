@@ -254,6 +254,25 @@ function addBlockButton() {
     });
 }
 
+function indicationText() {
+    const indication = document.createElement("indicationText");
+    indication.style.position = "absolute";
+    indication.style.bottom = `10%`;
+    indication.style.left = "50%";
+    indication.style.transform = "translateX(-50%)";
+    indication.style.padding = "10px 20px";
+    indication.style.fontSize = "16px";
+    indication.style.borderRadius = "8px";
+    indication.style.border = "none";
+    indication.style.background = "rgba(0, 0, 0, 0.5)";
+    indication.style.color = "#fff";
+    indication.style.fontFamily = "Avenir, sans-serif";
+    indication.innerHTML = `Use mouse to move the block. Press 'Space' to place it, 'R' to rotate.`;
+
+    document.body.appendChild(indication);
+}
+indicationText();
+
 addBlockButton();
 
 function nightModeButton() {
@@ -380,10 +399,11 @@ function onWindowResize(event) {
 function onKeyDown (event) {
     if (event.code === 'Space') {
       if(!isPlaced){
-        isPlaced = true;
+        
         const boxCollinder = new THREE.Box3();
         boxCollinder.setFromObject(cardboardList[cardboardList.length - 1],true);
         cardboardBoxList.push(boxCollinder);
+        isPlaced = true;
         addBlock.style.visibility = 'visible';
       }
       else{
