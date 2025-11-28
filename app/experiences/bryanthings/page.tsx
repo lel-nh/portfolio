@@ -86,7 +86,15 @@ export default function Home() {
             width={16}
             height={16}
           />
-          E-mail →
+          E-mail
+        </Link>
+                        <Link
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="www.linkedin.com/in/lelian-nh"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+         → LinkedIn 
         </Link>
       </footer>
     </div>
