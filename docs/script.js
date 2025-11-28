@@ -243,6 +243,7 @@ function addBlockButton() {
     addBlock.style.cursor = "pointer";
     addBlock.style.fontFamily = "Avenir, sans-serif";
     addBlock.innerHTML = `Add Block`;
+    addBlock.style.visibility = 'visible';
     
     document.body.appendChild(addBlock);
 
