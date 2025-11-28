@@ -257,8 +257,9 @@ function addBlockButton() {
 function indicationText() {
     const indication = document.createElement("indicationText");
     indication.style.position = "absolute";
-    indication.style.bottom = `10%`;
+    indication.style.bottom = "10px";
     indication.style.left = "50%";
+    indication.style.transform = "translateX(-50%)";
     indication.style.padding = "10px 20px";
     indication.style.fontSize = "16px";
     indication.style.borderRadius = "8px";
