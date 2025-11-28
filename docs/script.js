@@ -29,9 +29,11 @@ let boxCollinder;
 
 let objects = [], cardboardList = [], shadowList = [], cardboardBoxList = [];
 
-let isPlaced = false;
+let isPlaced = true;
 
 let emisiveColor = new THREE.Color(0xffee88);
+
+let addBlock;
 
 const params = {
   shadows: true,
@@ -228,7 +230,7 @@ function init(){
 }
 
 function addBlockButton() {
-    const addBlock = document.createElement("addButton");
+    addBlock = document.createElement("addButton");
     addBlock.style.position = "absolute";
     addBlock.style.top = `10%`;
     addBlock.style.right = "10%";
@@ -241,15 +243,16 @@ function addBlockButton() {
     addBlock.style.cursor = "pointer";
     addBlock.style.fontFamily = "Avenir, sans-serif";
     addBlock.innerHTML = `Add Block`;
-    addBlock.style.visibility = isPlaced ? "visible" : "hidden";
-
+    
     document.body.appendChild(addBlock);
 
     addBlock.addEventListener("click", () => {
       isPlaced = false;
+      addBlock.style.visibility = 'hidden';
       addCardboardBlock();
     });
 }
+
 addBlockButton();
 
 function nightModeButton() {
@@ -380,6 +383,7 @@ function onKeyDown (event) {
         const boxCollinder = new THREE.Box3();
         boxCollinder.setFromObject(cardboardList[cardboardList.length - 1],true);
         cardboardBoxList.push(boxCollinder);
+        addBlock.style.visibility = 'visible';
       }
       else{
         isPlaced = false;
@@ -456,6 +460,6 @@ function render(){
 function animate() {
   requestAnimationFrame( animate );
   controls.update();
-  render();  
+  render(); 
 }
 animate();
