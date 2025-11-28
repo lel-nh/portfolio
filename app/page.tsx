@@ -51,16 +51,11 @@ useEffect(() => {
       <main className="mt-30 flex flex-col items-center gap-8 text-center">
         <br />
         <div className="flex-col">
-        <h1 className="text-2xl font-bold sm:text-4xl">Lélian Nahon</h1>
-        <Image src="/profil.png" alt="Profile picture" width={150} height={150} className="rounded-full mx-auto" />
-        <br />
+          <h1 className="text-2xl font-bold sm:text-4xl">Lélian Nahon</h1>
+          <br />
+          <Image src="/profil.png" alt="Profile picture" width={150} height={150} className="rounded-full mx-auto" />
         </div>
         <h2 className="text-l">Engineer-Manager Student | Msc Candidate | Creative Technologist</h2>
-        <br />
-        <p className="max-w-xl text-center">
-            I am passionate about how innovation can make evolve technology help people in harmony with nature.
-        </p>
-        <br />
         <div className="w-full max-w-4xl space-y-8">
           {dict_projects.map((project, index) => (
             <div key={index} className="shadow-bottom p-6">
