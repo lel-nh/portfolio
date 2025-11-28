@@ -397,7 +397,7 @@ function onKeyDown (event) {
       }
     } 
     if(event.code === 'KeyC'){
-      console.log('objects:', objects);
+      //console.log('objects:', objects);
       controls.maxPolarAngle = Math.PI;
       controls.minPolarAngle = -Math.PI ;
       controls.maxDistance = 1000;
