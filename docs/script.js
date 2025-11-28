@@ -255,21 +255,22 @@ function addBlockButton() {
 }
 
 function indicationText() {
-    const indication = document.createElement("indicationText");
-    indication.style.position = "absolute";
-    indication.style.bottom = "30px";
-    indication.style.left = "50%";
-    indication.style.transform = "translateX(-50%)";
-    indication.style.padding = "10px 20px";
-    indication.style.fontSize = "16px";
-    indication.style.borderRadius = "8px";
-    indication.style.border = "none";
-    indication.style.background = "rgba(0, 0, 0, 0.5)";
-    indication.style.color = "#fff";
-    indication.style.fontFamily = "Avenir, sans-serif";
-    indication.innerHTML = `Use mouse to move the block. Press 'Space' to place it, 'R' to rotate.`;
+  const indication = document.createElement("indicationText");
+  indication.style.position = "fixed";
+  indication.style.bottom = "30px";
+  indication.style.left = "50%";
+  indication.style.transform = "translateX(-50%)";
+  indication.style.padding = "10px 20px";
+  indication.style.fontSize = "16px";
+  indication.style.borderRadius = "8px";
+  indication.style.border = "none";
+  indication.style.background = "rgba(0, 0, 0, 0.5)";
+  indication.style.color = "#fff";
+  indication.style.fontFamily = "Avenir, sans-serif";
+  indication.style.zIndex = "9999";
+  indication.innerHTML = `Use mouse to move the block. Press 'Space' to place it, 'R' to rotate.`;
 
-    document.body.appendChild(indication);
+  document.body.appendChild(indication);
 }
 indicationText();
 
