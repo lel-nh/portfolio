@@ -47,6 +47,7 @@ useEffect(() => {
             </div>
           
       </div>
+      <p>Use mouse to move the block. Press 'Space' to place it, 'R' to rotate.</p>
       <iframe
         src="https://lel-nh.github.io/portfolio/"
         width={600}
