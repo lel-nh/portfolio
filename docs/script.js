@@ -21,11 +21,15 @@ let bulbLight, cylinder;
 
 let bulbMat;
 
+let earth, plant;
+
 let sunlight;
 
 let raycaster, pointer, plane;
 
 let boxCollinder;
+
+let play;
 
 let objects = [], cardboardList = [], shadowList = [], cardboardBoxList = [];
 
@@ -34,6 +38,8 @@ let isPlaced = true;
 let emisiveColor = new THREE.Color(0xffee88);
 
 let addBlock;
+
+let earthList = [], plantList = [];
 
 const params = {
   shadows: true,
@@ -216,6 +222,7 @@ function init(){
   //scene.add(deskFloor);
 
 
+
   //RayCaster and Pointer
   raycaster = new THREE.Raycaster();
   pointer = new THREE.Vector2();
@@ -324,7 +331,7 @@ function nightModeButton() {
       render();
     });
   }
-nightModeButton();
+//nightModeButton();
 
 function onPointerMove( event ) {
 
@@ -333,6 +340,7 @@ function onPointerMove( event ) {
   raycaster.setFromCamera( pointer, camera );
 
   const intersects = raycaster.intersectObjects( objects, false );
+  if(!isPlaced){
 
   if ( intersects.length > 0 && !isPlaced && cardboardList.length > 0 ) {
     
@@ -375,11 +383,20 @@ function onPointerMove( event ) {
       } else {
         cardboardList[cardboardList.length - 1].position.y = 0;
       }
+
+
     }
+      earthList[earthList.length - 1].position.y = cardboardList[cardboardList.length - 1].position.y + 0.1;
+      earthList[earthList.length - 1].position.x = cardboardList[cardboardList.length - 1].position.x;
+      earthList[earthList.length - 1].position.z = cardboardList[cardboardList.length - 1].position.z;
+
+      plantList[plantList.length - 1].position.x = cardboardList[cardboardList.length - 1].position.x;
+      plantList[plantList.length - 1].position.z = cardboardList[cardboardList.length - 1].position.z;
+      plantList[plantList.length - 1].position.y = cardboardList[cardboardList.length - 1].position.y + 2.8;
     
 
     render();
-    
+    }
   }
 
 }
@@ -395,17 +412,85 @@ function onWindowResize(event) {
 
 }
 
+function playButton() {
+    play = document.createElement("playButton");
+    play.style.position = "absolute";
+    play.style.top = `10%`;
+    play.style.left = "50%";
+    play.style.transform = "translateX(-50%)";
+    play.style.padding = "10px 20px";
+    play.style.fontSize = "16px";
+    play.style.borderRadius = "8px";
+    play.style.border = "none";
+    play.style.background = "#007bff";
+    play.style.color = "#fff";
+    play.style.cursor = "pointer";
+    play.style.fontFamily = "Avenir, sans-serif";
+    play.innerHTML = `Play`;
+
+    document.body.appendChild(play);
+
+    play.addEventListener("click", () => {
+      if(play.innerHTML == 'Play'){
+        for(let i = 0; i < earthList.length; i++){
+        scene.add( earthList[i] );
+        scene.add( plantList[i] );
+        }
+      play.innerHTML = `Construction`;
+      addBlock.style.visibility = 'hidden';
+      }
+      else{
+        for(let i = 0; i < earthList.length; i++){
+          scene.remove( earthList[i] );
+          scene.remove( plantList[i] );
+        }
+        play.innerHTML = `Play`;
+        if(isPlaced){
+          addBlock.style.visibility = 'visible';
+        }
+      }
+      if(skyColor == 0x87ceeb){
+        skyColor = 0x000001;
+      //params.shadows = false;
+        params.exposure = 1;
+        params.bulbPower = 50000;
+        params.hemiIrradiance = 0;
+        scene.remove(sunlight);
+        scene.remove(deskFloor);
+        emisiveColor = new THREE.Color(0xffee88);
+      }
+      else{
+        skyColor = 0x87ceeb;
+        params.shadows = true;
+        params.exposure = 1;
+        params.bulbPower = 0;
+        scene.add(sunlight);
+        scene.add(deskFloor);
+        emisiveColor = new THREE.Color(0x000000);
+      }
+      renderer.setClearColor(skyColor, 1);
+      renderer.shadowMap.enabled = params.shadows;
+      renderer.toneMappingExposure = params.exposure;
+      bulbLight.power = params.bulbPower;
+
+      render();
+    });
+}
+
+playButton();
 
 //Helper to print log
 function onKeyDown (event) {
     if (event.code === 'Space') {
       if(!isPlaced){
         
+
+        isPlaced = true;
         const boxCollinder = new THREE.Box3();
         boxCollinder.setFromObject(cardboardList[cardboardList.length - 1],true);
         cardboardBoxList.push(boxCollinder);
-        isPlaced = true;
         addBlock.style.visibility = 'visible';
+
       }
       else{
         isPlaced = false;
@@ -416,6 +501,9 @@ function onKeyDown (event) {
       if(cardboardList.length > 0 && !isPlaced){
         cardboardList[cardboardList.length - 1].rotation.z += Math.PI / 4;
         shadowList[shadowList.length - 1].rotation.y += Math.PI / 4;
+        earthList[earthList.length - 1].rotation.y += Math.PI / 4;
+        plantList[plantList.length - 1].rotation.y += Math.PI / 4;
+        boxCollinder.setFromObject(cardboardList[cardboardList.length - 1], true);
       }
     } 
     if(event.code === 'KeyC'){
@@ -472,6 +560,56 @@ async function addCardboardBlock(){
   //controls.enabled = false;
   scene.add( object );
   objects.push( object );
+
+  const earthGroup = new THREE.Group();
+
+  const geometryEarth = new THREE.BoxGeometry( 4, 2.5, 10 );
+  const materialEarth = new THREE.MeshBasicMaterial( { color: 0x582900 } );
+  earth = new THREE.Mesh( geometryEarth, materialEarth );
+  earth.position.set(0,2,0);
+  //scene.add( earth );
+
+  const geometryEarthCircle = new THREE.ConeGeometry( 2, 2.5, 32 );
+  const coneT = new THREE.Mesh(geometryEarthCircle, materialEarth );
+  coneT.rotation.x = Math.PI;
+  coneT.position.set(0,2,-5);
+  //scene.add( coneT );
+
+  const coneB = new THREE.Mesh(geometryEarthCircle, materialEarth );
+  coneB.rotation.x = Math.PI;
+  coneB.position.set(0,2,5);
+  //scene.add( coneB );
+
+  earthGroup.add( earth );
+  earthGroup.add( coneT );
+  earthGroup.add( coneB );
+
+  earthList.push(earthGroup);
+
+  const plantGroup = new THREE.Group();
+
+  // Create grass blades on a 4x10 surface
+  const grassGeometry = new THREE.ConeGeometry(0.3, 1, 4);
+  const grassMaterial = new THREE.MeshLambertMaterial({ color: 0x228B22 });
+
+  for (let x = -1.6; x <= 1.7; x += 0.3) {
+    for (let z = -6.5; z <= 6.5; z += 0.3) {
+      const grassBlade = new THREE.Mesh(grassGeometry, grassMaterial);
+      grassBlade.position.set(
+        x + (Math.random() - 0.5) * 0.2,
+        Math.random() * 0.5 + 0.5,
+        z + (Math.random() - 0.5) * 0.2
+      );
+      grassBlade.rotation.x = (Math.random() - 0.2) * 0.2;
+      grassBlade.rotation.z = (Math.random() - 0.2) * 0.2;
+      grassBlade.scale.y = Math.random() * 0.5 + 0.5;
+      plantGroup.add(grassBlade);
+    }
+  }
+  plantGroup.position.set(0,2.5,0);
+
+  plant = plantGroup;
+  plantList.push(plant);
 }
 
 function render(){
