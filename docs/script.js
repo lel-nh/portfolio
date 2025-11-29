@@ -186,11 +186,12 @@ function init(){
   scene.add( desk );
 
   plane = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial({ visible: false }) );
-  plane.scale.set(1000,1,1000);
+  plane.scale.set(500,1,500);
   plane.position.set(0,-2.5,0);
   plane.receiveShadow = true;
   plane.castShadow = true;
   scene.add( plane );
+
   objects.push( plane );
 
   //Side Planks
@@ -480,15 +481,15 @@ function playButton() {
 playButton();
 
 //Helper to print log
-function onKeyDown (event) {
+async function onKeyDown (event) {
     if (event.code === 'Space') {
       if(!isPlaced){
-        
-
         isPlaced = true;
         const boxCollinder = new THREE.Box3();
         boxCollinder.setFromObject(cardboardList[cardboardList.length - 1],true);
         cardboardBoxList.push(boxCollinder);
+
+        await new Promise(resolve => setTimeout(resolve, 500));
         addBlock.style.visibility = 'visible';
 
       }
