@@ -42,7 +42,9 @@ useEffect(() => {
             <div className="flex-1 text-left">
               <br />
             <p className="text-gray-700 mb-4">This project focuses on the water proofing process for upcycling cardboard materials.
-              This porject is on going development and more information will be available soon.
+              This project is on going development and more information will be available soon.
+
+              This 3d model below represents a prototype of a cardboard block that can be moved and placed in any environment to create green space easily to improve life quality, air quality and increse biodiversity in areas. 
             </p>
             </div>
           
